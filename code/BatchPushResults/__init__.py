@@ -24,7 +24,7 @@ def main(msg: func.QueueMessage) -> None:
     file_name = json.loads(msg.get_body().decode('utf-8'))['filename']
 
     # Check the file extension
-    if file_name.endswith('.txt'):
+    if file_name.endswith('.txt') or file_name.endswith('.md'):
         # Read the file from Blob Storage
         blob_client = BlobServiceClient.from_connection_string(connect_str).get_blob_client(container=container_name, blob=file_name)
         file_content = blob_client.download_blob().readall().decode('utf-8')

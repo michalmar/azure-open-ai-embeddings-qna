@@ -98,7 +98,7 @@ try:
             st.button("Compute Embeddings", on_click=embeddings)
 
     with st.expander("Add documents in Batch", expanded=False):
-        uploaded_files = st.file_uploader("Upload a document to add it to the Azure Storage Account", type=['pdf','jpeg','jpg','png', 'txt'], accept_multiple_files=True)
+        uploaded_files = st.file_uploader("Upload a document to add it to the Azure Storage Account", type=['pdf','jpeg','jpg','png', 'txt','md'], accept_multiple_files=True)
         if uploaded_files is not None:
             for up in uploaded_files:
                 # To read file as bytes:
@@ -109,7 +109,7 @@ try:
                     st.session_state['filename'] = up.name
                     content_type = mimetypes.MimeTypes().guess_type(up.name)[0]
                     st.session_state['file_url'] = upload_file(bytes_data, st.session_state['filename'], content_type=content_type)
-                    if up.name.endswith('.txt'):
+                    if up.name.endswith('.txt') or up.name.endswith('.md'):
                         # Add the text to the embeddings
                         upsert_blob_metadata(up.name, {'converted': "true"})
 

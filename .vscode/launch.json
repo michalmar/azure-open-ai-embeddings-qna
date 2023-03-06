@@ -7,6 +7,21 @@
       "request": "attach",
       "port": 9091,
       "preLaunchTask": "func: host start"
+    },
+    {
+      "name": "Streamlit Application",
+      "type": "python",
+      "request": "launch",
+      "module": "streamlit",
+      "justMyCode": true,
+      "cwd": "${workspaceFolder}/code",
+      "args": [
+        "run",
+        "OpenAI_Queries.py",
+        "--server.enableCORS", "false", 
+        "--server.enableXsrfProtection", "false",
+        "--server.port",  "8501"
+      ]
     }
   ]
 }
