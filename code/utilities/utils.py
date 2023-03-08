@@ -144,11 +144,11 @@ def chunk_and_embed(text: str, filename="", engine="text-embedding-ada-002"):
     return full_data
 
 
-def get_completion(prompt="", max_tokens=400, model="text-davinci-003"):
+def get_completion(prompt="", max_tokens=400, model="text-davinci-003", temperature=1):
     response = openai.Completion.create(
         engine=model,
         prompt=prompt,
-        temperature=1,
+        temperature=temperature,
         max_tokens=max_tokens,
         top_p=0.5,
         frequency_penalty=0,
